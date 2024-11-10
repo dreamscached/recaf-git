@@ -1,14 +1,14 @@
 # Maintainer: dreamscache.d <dreamscache.d@gmail.com>
 _pkgname=recaf
 pkgname=${_pkgname}-git
-pkgver=r4448.02ba1332c
-pkgrel=2
+pkgver=r4455.e6b5b7f16
+pkgrel=1
 pkgdesc="A modern Java bytecode editor"
 arch=("any")
 url="https://github.com/Col-E/Recaf"
 license=("MIT")
-depends=("java-environment-openjdk=22" "ttf-font")
-makedepends=("git" "jdk22-openjdk")
+depends=("java-environment-openjdk=23" "ttf-font")
+makedepends=("git" "jdk23-openjdk")
 provides=("$_pkgname")
 conflicts=("$_pkgname" "$_pkgname-bin")
 replaces=("recaf")
@@ -20,9 +20,14 @@ pkgver() {
 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
+prepare() {
+	patch "$srcdir/$_pkgname/gradle/wrapper/gradle-wrapper.properties" "../gradle_v8_10.patch"
+	patch "$srcdir/$_pkgname/build.gradle" "../java_23.patch"
+}
+
 build() {
 	cd "$srcdir/$_pkgname"
-	export JAVA_HOME="/usr/lib/jvm/java-22-openjdk"
+	export JAVA_HOME="/usr/lib/jvm/java-23-openjdk"
 	export GRADLE_USER_HOME="$srcdir/$_pkgname/.gradle"
 	./gradlew --no-daemon build
 }
