@@ -21,7 +21,6 @@ pkgver() {
 }
 
 prepare() {
-	patch "$srcdir/$_pkgname/gradle/wrapper/gradle-wrapper.properties" "../gradle_v8_10.patch"
 	patch "$srcdir/$_pkgname/build.gradle" "../java_23.patch"
 }
 
