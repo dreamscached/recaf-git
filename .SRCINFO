@@ -1,13 +1,13 @@
 pkgbase = recaf-git
 	pkgdesc = A modern Java bytecode editor
-	pkgver = r4478.4ab601528
+	pkgver = r4776.38837e213
 	pkgrel = 1
 	url = https://github.com/Col-E/Recaf
 	arch = any
 	license = MIT
 	makedepends = git
-	makedepends = jdk23-openjdk
-	depends = java-environment-openjdk=23
+	makedepends = jdk24-openjdk
+	depends = java-environment-openjdk=24
 	depends = ttf-font
 	provides = recaf
 	conflicts = recaf
